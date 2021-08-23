@@ -66,7 +66,7 @@ public class LocationServiceImpl implements LocationService {
     try {
       return reader.country(ip);
     } catch (IOException | GeoIp2Exception e) {
-      log.error("Error when getting Country from database ");
+      log.error("Error when trying to get country from database ");
       throw new RuntimeException(e.getMessage());
     }
   }
@@ -75,7 +75,7 @@ public class LocationServiceImpl implements LocationService {
     try {
       return reader.city(ip);
     } catch (IOException | GeoIp2Exception e) {
-      log.error("Error when getting City from database ");
+      log.error("Error when trying to get city from database ");
       throw new RuntimeException(e.getMessage());
     }
   }
