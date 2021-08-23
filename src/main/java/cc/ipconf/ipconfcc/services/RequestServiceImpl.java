@@ -28,7 +28,7 @@ public class RequestServiceImpl implements RequestService {
       log.info("Trying to get IP address from request.getRemoteAddr(): {}", ipAddress);
     }
 
-    if (isRunningInDevEnv()) {
+    if (isRunningInDevEnv(ipAddress)) {
       log.info("Dirty hack for localhost with overriding IP address to: {}", DEFAULT_IP_ADDRESS);
       ipAddress = DEFAULT_IP_ADDRESS;
     }
@@ -37,10 +37,10 @@ public class RequestServiceImpl implements RequestService {
     return ipDto;
   }
 
-  private boolean isRunningInDevEnv() {
+  private boolean isRunningInDevEnv(String ipAddress) {
     log.info("Check if running on localhost");
     try {
-      InetAddress inetAddress = InetAddress.getLocalHost();
+      InetAddress inetAddress = InetAddress.getByName(ipAddress);
 
       log.info("isAnyLocalAddress: {}", inetAddress.isAnyLocalAddress());
       log.info("isLoopBackAddress: {}", inetAddress.isLoopbackAddress());
