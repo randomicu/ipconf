@@ -65,6 +65,8 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<!--suppress UnresolvedMavenProperty -->
+					<imageName>ghcr.io/randomicu/ipconf-app:${git.closest.tag.name}</imageName>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -115,7 +117,6 @@
 			<id>production</id>
 			<properties>
 				<activatedProperties>production</activatedProperties>
-				<version.number>${project.version}</version.number>
 			</properties>
 		</profile>
 	</profiles>
