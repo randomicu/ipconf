@@ -23,14 +23,14 @@ public class RequestServiceImpl implements RequestService {
     String ipAddress = request.getHeader("X-Forwarded-For");
     log.info("Trying to get IP address from request.getHeader(\"X-Forwarded-For\"): {}", ipAddress);
 
-    if (!StringUtils.hasLength(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
+    if (!StringUtils.hasLength(ipAddress)) {
       ipAddress = request.getRemoteAddr();
       log.info("Trying to get IP address from request.getRemoteAddr(): {}", ipAddress);
+    }
 
-      if (isRunningInDevEnv()) {
-        log.info("Dirty hack for localhost with overriding IP address to: {}", DEFAULT_IP_ADDRESS);
-        ipAddress = DEFAULT_IP_ADDRESS;
-      }
+    if (isRunningInDevEnv()) {
+      log.info("Dirty hack for localhost with overriding IP address to: {}", DEFAULT_IP_ADDRESS);
+      ipAddress = DEFAULT_IP_ADDRESS;
     }
 
     ipDto.setIpAddress(ipAddress);
