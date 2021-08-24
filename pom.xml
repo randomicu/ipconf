@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>cc.ipconf</groupId>
-	<artifactId>ipconfcc</artifactId>
+	<artifactId>ipconf-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ipconf</name>
+	<name>ipconf-app</name>
 	<description>Shows location info from your IP address</description>
 	<properties>
 		<java.version>16</java.version>
@@ -59,6 +59,9 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<layers>
+						<enabled>true</enabled>
+					</layers>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -66,7 +69,7 @@
 						</exclude>
 					</excludes>
 					<!--suppress UnresolvedMavenProperty -->
-					<imageName>ghcr.io/randomicu/ipconf-app:${git.closest.tag.name}</imageName>
+					<imageName>ghcr.io/randomicu/${project.name}:${git.closest.tag.name}</imageName>
 				</configuration>
 			</plugin>
 			<plugin>
