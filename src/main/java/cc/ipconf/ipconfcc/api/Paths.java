@@ -9,6 +9,7 @@ public class Paths {
   public static final String INFO_ENDPOINT = "/info";
   public static final String COUNTRY_ENDPOINT = "/location/country";
   public static final String CITY_ENDPOINT = "/location/city";
+  public static final String ASN_ENDPOINT = "/asn";
 
 
   private Paths() {

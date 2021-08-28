@@ -15,26 +15,45 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MMDBLoaderConfig {
 
-  @Value("${ipaddr.mmdb.city-filename}")
+  @Value("${ipconf.mmdb.city-database.filename}")
   private String cityDatabaseName;
 
-  @Value("${ipaddr.mmdb.city-database-path}")
+  @Value("${ipconf.mmdb.city-database.path}")
   private String cityDatabasePath;
 
-  @Bean
-  public DatabaseReader getDatabaseReader() {
-    log.info("Current working directory: {}", Path.of("").toAbsolutePath());
+  @Value("${ipconf.mmdb.asn-database.filename}")
+  private String asnDatabaseName;
 
+  @Value("${ipconf.mmdb.asn-database.path}")
+  private String asnDatabasePath;
+
+  @Bean
+  public DatabaseReader getCityDatabaseReader() {
     File cityDb = new File(Paths.get(cityDatabasePath).toString());
     DatabaseReader.Builder databaseReaderBuilder = new DatabaseReader.Builder(cityDb);
-    log.info("Full database file path: {}", cityDb.getAbsolutePath());
+    log.info("Full City database file path: {}", cityDb.getAbsolutePath());
 
     try {
-      log.info("Loading database: {}", cityDatabaseName);
+      log.info("Loading City database: {}", cityDatabaseName);
       return databaseReaderBuilder.build();
     } catch (IOException e) {
       Sentry.captureException(e);
-      throw new IllegalArgumentException("Database file not found");
+      throw new IllegalArgumentException("City database file not found");
+    }
+  }
+
+  @Bean
+  public DatabaseReader getAsnDatabaseReader() {
+    File asnDb = new File(Paths.get(asnDatabasePath).toString());
+    DatabaseReader.Builder databaseReaderBuilder = new DatabaseReader.Builder(asnDb);
+    log.info("Full ASN database file path: {}", asnDb.getAbsolutePath());
+
+    try {
+      log.info("Loading ASN database: {}", asnDatabaseName);
+      return databaseReaderBuilder.build();
+    } catch (IOException e) {
+      Sentry.captureException(e);
+      throw new IllegalArgumentException("ASN database file not found");
     }
   }
 

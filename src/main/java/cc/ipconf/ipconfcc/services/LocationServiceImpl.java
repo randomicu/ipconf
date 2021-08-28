@@ -1,12 +1,12 @@
 package cc.ipconf.ipconfcc.services;
 
+import cc.ipconf.ipconfcc.config.MMDBLoaderConfig;
+import cc.ipconf.ipconfcc.dto.CityDto;
+import cc.ipconf.ipconfcc.dto.CountryDto;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
 import com.maxmind.geoip2.model.CountryResponse;
-import cc.ipconf.ipconfcc.dto.CityDto;
-import cc.ipconf.ipconfcc.dto.CountryDto;
-import cc.ipconf.ipconfcc.config.MMDBLoaderConfig;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -29,7 +29,7 @@ public class LocationServiceImpl implements LocationService {
   @Override
   public CountryDto getCountry(String clientIpAddress) {
     CountryDto countryDto = new CountryDto();
-    DatabaseReader reader = mmdbLoader.getDatabaseReader();
+    DatabaseReader reader = mmdbLoader.getCityDatabaseReader();
 
     InetAddress ip = this.getIpAddress(clientIpAddress);
     CountryResponse response = this.getCountryResponse(reader, ip);
@@ -44,7 +44,7 @@ public class LocationServiceImpl implements LocationService {
   @Override
   public CityDto getCity(String clientIpAddress) {
     CityDto cityDto = new CityDto();
-    DatabaseReader reader = mmdbLoader.getDatabaseReader();
+    DatabaseReader reader = mmdbLoader.getCityDatabaseReader();
 
     InetAddress ip = this.getIpAddress(clientIpAddress);
     CityResponse response = this.getCityResponse(reader,ip);
