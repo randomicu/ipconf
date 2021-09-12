@@ -1,8 +1,8 @@
-package cc.ipconf.ipconfcc.controllers;
+package cc.ipconf.controllers;
 
-import cc.ipconf.ipconfcc.api.Paths;
-import cc.ipconf.ipconfcc.dto.InfoDto;
-import cc.ipconf.ipconfcc.services.InfoService;
+import cc.ipconf.api.Paths;
+import cc.ipconf.dto.InfoDto;
+import cc.ipconf.services.InfoService;
 import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

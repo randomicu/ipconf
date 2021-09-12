@@ -1,4 +1,4 @@
-package cc.ipconf.ipconfcc.dto;
+package cc.ipconf.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,15 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AsnDto {
+public class IpAddressDto {
 
-  @JsonProperty("asn")
-  Integer autonomousSystemNumber;
-
-  @JsonProperty("organization")
-  String autonomousSystemOrganization;
-
-  @JsonProperty("network")
-  NetworkDto networkDto;
+  @JsonProperty("ip_address")
+  String ipAddress;
 
 }

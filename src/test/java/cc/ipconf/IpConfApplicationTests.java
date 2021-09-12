@@ -1,9 +1,9 @@
-package cc.ipconf.ipconfcc;
+package cc.ipconf;
 
-import cc.ipconf.ipconfcc.controllers.AsnController;
-import cc.ipconf.ipconfcc.controllers.InfoController;
-import cc.ipconf.ipconfcc.controllers.IpController;
-import cc.ipconf.ipconfcc.controllers.LocationController;
+import cc.ipconf.controllers.AsnController;
+import cc.ipconf.controllers.InfoController;
+import cc.ipconf.controllers.IpController;
+import cc.ipconf.controllers.LocationController;
 import com.maxmind.geoip2.DatabaseReader;
 import java.io.File;
 import java.io.IOException;

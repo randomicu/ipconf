@@ -1,10 +1,10 @@
-package cc.ipconf.ipconfcc.services;
+package cc.ipconf.services;
 
-import cc.ipconf.ipconfcc.dto.AsnDto;
-import cc.ipconf.ipconfcc.dto.CityDto;
-import cc.ipconf.ipconfcc.dto.CountryDto;
-import cc.ipconf.ipconfcc.dto.InfoDto;
-import cc.ipconf.ipconfcc.dto.IpAddressDto;
+import cc.ipconf.dto.AsnDto;
+import cc.ipconf.dto.CityDto;
+import cc.ipconf.dto.CountryDto;
+import cc.ipconf.dto.InfoDto;
+import cc.ipconf.dto.IpAddressDto;
 import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

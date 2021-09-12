@@ -1,4 +1,4 @@
-package cc.ipconf.ipconfcc.dto;
+package cc.ipconf.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,14 +8,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CountryDto {
+public class AsnDto {
 
-  String country;
+  @JsonProperty("asn")
+  Integer autonomousSystemNumber;
 
-  @JsonProperty("iso_code")
-  String isoCode;
+  @JsonProperty("organization")
+  String autonomousSystemOrganization;
 
-  @JsonProperty("is_eu")
-  Boolean isInEuropeanUnion;
+  @JsonProperty("network")
+  NetworkDto networkDto;
 
 }

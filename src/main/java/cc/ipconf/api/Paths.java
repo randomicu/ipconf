@@ -1,4 +1,4 @@
-package cc.ipconf.ipconfcc.api;
+package cc.ipconf.api;
 
 public class Paths {
 

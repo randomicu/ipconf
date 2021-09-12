@@ -1,8 +1,8 @@
-package cc.ipconf.ipconfcc.services;
+package cc.ipconf.services;
 
-import cc.ipconf.ipconfcc.config.MMDBLoaderConfig;
-import cc.ipconf.ipconfcc.dto.CityDto;
-import cc.ipconf.ipconfcc.dto.CountryDto;
+import cc.ipconf.config.MMDBLoaderConfig;
+import cc.ipconf.dto.CityDto;
+import cc.ipconf.dto.CountryDto;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;

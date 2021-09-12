@@ -1,6 +1,6 @@
-package cc.ipconf.ipconfcc.services;
+package cc.ipconf.services;
 
-import cc.ipconf.ipconfcc.dto.InfoDto;
+import cc.ipconf.dto.InfoDto;
 import javax.servlet.http.HttpServletRequest;
 
 public interface InfoService {

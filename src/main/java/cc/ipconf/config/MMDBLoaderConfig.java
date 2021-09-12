@@ -1,10 +1,9 @@
-package cc.ipconf.ipconfcc.config;
+package cc.ipconf.config;
 
 import com.maxmind.geoip2.DatabaseReader;
 import io.sentry.Sentry;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

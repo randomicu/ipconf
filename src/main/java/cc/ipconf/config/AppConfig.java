@@ -1,4 +1,4 @@
-package cc.ipconf.ipconfcc.config;
+package cc.ipconf.config;
 
 import java.nio.file.Path;
 import javax.annotation.PostConstruct;
