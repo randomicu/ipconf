@@ -18,6 +18,18 @@ Before building, edit the `.env` file.
 4. Download latest db-ip databases (ASN Lite, City Lite) and place it to `./mmdb` folder
 5. Start container: `docker run --rm -p 8080:8080 --volume "${PWD}/mmdb:/workspace/mmdb" --env "SENTRY_DSN=$SENTRY_DSN" image:1.0.0`
 
+## Development and releases
+
+The following text will describe **ipconf** development and releasing process.
+
+**First** - all commits for the [next version](https://next.ipconf.cc) are pushed to the `development` branch. Also, all new code changes will be deployed by hand.
+
+**Second** - all releases for the [main site](https://ipconf.cc) are tagged with semver and could be found on the Github [releases page](https://github.com/randomicu/ipconf/releases).
+
+**Third** - all Docker images could be found on the Github [packages page](https://github.com/orgs/randomicu/packages?repo_name=ipconf).
+
+There is no public roadmap available for the **ipconf** project now.
+
 ## Thanks
 
 Ipconf & related projects were built with [Jetbrains](https://www.jetbrains.com/?from=RandomicuQAAPI) PyCharm Professional
