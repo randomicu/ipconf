@@ -20,69 +20,69 @@ import org.springframework.context.annotation.Bean;
 @SpringBootTest
 class IpConfApplicationTests {
 
-	@Autowired
-	private AsnController asnController;
+  @Autowired
+  private AsnController asnController;
 
-	@Autowired
-	private InfoController infoController;
+  @Autowired
+  private InfoController infoController;
 
-	@Autowired
-	private IpController ipController;
+  @Autowired
+  private IpController ipController;
 
-	@Autowired
-	private LocationController locationController;
+  @Autowired
+  private LocationController locationController;
 
-	@Test
-	void contextLoads() {
-		assertThat(asnController).isNotNull();
-		assertThat(infoController).isNotNull();
-		assertThat(ipController).isNotNull();
-		assertThat(locationController).isNotNull();
-	}
+  @Test
+  void contextLoads() {
+    assertThat(asnController).isNotNull();
+    assertThat(infoController).isNotNull();
+    assertThat(ipController).isNotNull();
+    assertThat(locationController).isNotNull();
+  }
 
-	@Slf4j
-	@TestConfiguration
-	public static class TestMMDBLoaderConfig {
+  @Slf4j
+  @TestConfiguration
+  public static class TestMMDBLoaderConfig {
 
-		@Value("${ipconf.mmdb.city-database.filename}")
-		private String cityDatabaseName;
+    @Value("${ipconf.mmdb.city-database.filename}")
+    private String cityDatabaseName;
 
-		@Value("${ipconf.mmdb.city-database.path}")
-		private String cityDatabasePath;
+    @Value("${ipconf.mmdb.city-database.path}")
+    private String cityDatabasePath;
 
-		@Value("${ipconf.mmdb.asn-database.filename}")
-		private String asnDatabaseName;
+    @Value("${ipconf.mmdb.asn-database.filename}")
+    private String asnDatabaseName;
 
-		@Value("${ipconf.mmdb.asn-database.path}")
-		private String asnDatabasePath;
+    @Value("${ipconf.mmdb.asn-database.path}")
+    private String asnDatabasePath;
 
-		@Bean
-		public DatabaseReader getAsnDatabaseReader() {
-			File asnDb = new File(Paths.get(asnDatabasePath).toString());
-			DatabaseReader.Builder databaseReaderBuilder = new DatabaseReader.Builder(asnDb);
-			log.info("Full ASN mini database file path: {}", asnDb.getAbsolutePath());
+    @Bean
+    public DatabaseReader getAsnDatabaseReader() {
+      File asnDb = new File(Paths.get(asnDatabasePath).toString());
+      DatabaseReader.Builder databaseReaderBuilder = new DatabaseReader.Builder(asnDb);
+      log.info("Full ASN mini database file path: {}", asnDb.getAbsolutePath());
 
-			try {
-				log.info("Loading ASN mini database: {}", asnDatabaseName);
-				return databaseReaderBuilder.build();
-			} catch (IOException e) {
-				throw new IllegalArgumentException("ASN mini database file not found");
-			}
-		}
+      try {
+        log.info("Loading ASN mini database: {}", asnDatabaseName);
+        return databaseReaderBuilder.build();
+      } catch (IOException e) {
+        throw new IllegalArgumentException("ASN mini database file not found");
+      }
+    }
 
-		@Bean
-		public DatabaseReader getCityDatabaseReader() {
-			File cityDb = new File(Paths.get(cityDatabasePath).toString());
-			DatabaseReader.Builder databaseReaderBuilder = new DatabaseReader.Builder(cityDb);
-			log.info("Full City mini database file path: {}", cityDb.getAbsolutePath());
+    @Bean
+    public DatabaseReader getCityDatabaseReader() {
+      File cityDb = new File(Paths.get(cityDatabasePath).toString());
+      DatabaseReader.Builder databaseReaderBuilder = new DatabaseReader.Builder(cityDb);
+      log.info("Full City mini database file path: {}", cityDb.getAbsolutePath());
 
-			try {
-				log.info("Loading City mini database: {}", cityDatabaseName);
-				return databaseReaderBuilder.build();
-			} catch (IOException e) {
-				throw new IllegalArgumentException("City mini database file not found");
-			}
-		}
-	}
+      try {
+        log.info("Loading City mini database: {}", cityDatabaseName);
+        return databaseReaderBuilder.build();
+      } catch (IOException e) {
+        throw new IllegalArgumentException("City mini database file not found");
+      }
+    }
+  }
 
 }
