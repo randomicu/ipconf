@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(classes = {AppTestConfig.class})
-public class AppBaseTests {
+public abstract class AppBaseTests {
 
   @Autowired
   protected AsnController asnController;
