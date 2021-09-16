@@ -12,7 +12,10 @@ import org.springframework.test.context.ContextConfiguration;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(classes = {AppTestConfig.class})
-public abstract class AppBaseTests {
+public abstract class AppTestBase {
+
+  public static final String IP_ADDRESS_ASN = "12.81.92.0";
+  public static final String IP_ADDRESS_LOCATION = "81.2.69.142";
 
   @Autowired
   protected AsnController asnController;
@@ -30,8 +33,8 @@ public abstract class AppBaseTests {
     IpAddressDto dto = new IpAddressDto();
 
     switch (databaseType) {
-      case "asn" -> dto.setIpAddress("12.81.92.0");
-      case "location" -> dto.setIpAddress("81.2.69.142");
+      case "asn" -> dto.setIpAddress(IP_ADDRESS_ASN);
+      case "location" -> dto.setIpAddress(IP_ADDRESS_LOCATION);
       default -> throw new IllegalStateException("Unexpected value: " + databaseType);
     }
 
