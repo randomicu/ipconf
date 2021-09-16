@@ -1,7 +1,7 @@
 package cc.ipconf.controller;
 
-import cc.ipconf.AppBaseTests;
 import static cc.ipconf.AppPaths.ASN_ENDPOINT;
+import cc.ipconf.AppTestBase;
 import cc.ipconf.dto.IpAddressDto;
 import cc.ipconf.services.RequestService;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
-public class AsnControllerTest extends AppBaseTests {
+public class AsnControllerTest extends AppTestBase {
 
   private final IpAddressDto ipAddressDto = getTestIpAddressDto("asn");
 
