@@ -41,7 +41,7 @@ public class IpControllerTest extends AppTestBase {
     mockMvc.perform(get(IP_ENDPOINT)
             .accept(MediaType.TEXT_PLAIN_VALUE))
         .andExpect(status().isOk())
-        .andExpect(content().string(IP_ADDRESS_ASN));
+        .andExpect(content().string(ASN_IP_ADDRESS));
   }
 
   @Test
@@ -49,14 +49,14 @@ public class IpControllerTest extends AppTestBase {
     mockMvc.perform(get(IP_ENDPOINT)
             .accept(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("ip_address", is(IP_ADDRESS_ASN)));
+        .andExpect(jsonPath("ip_address", is(ASN_IP_ADDRESS)));
   }
 
   @Test
   public void testIpAsDefault() throws Exception {
     mockMvc.perform(get(IP_ENDPOINT))
         .andExpect(status().isOk())
-        .andExpect(content().string(IP_ADDRESS_ASN));
+        .andExpect(content().string(ASN_IP_ADDRESS));
   }
 
 }

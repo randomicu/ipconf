@@ -14,8 +14,8 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration(classes = {AppTestConfig.class})
 public abstract class AppTestBase {
 
-  public static final String IP_ADDRESS_ASN = "12.81.92.0";
-  public static final String IP_ADDRESS_LOCATION = "81.2.69.142";
+  public final String ASN_IP_ADDRESS = "12.81.92.0";
+  public final String LOCATION_IP_ADDRESS = "81.2.69.142";
 
   @Autowired
   protected AsnController asnController;
@@ -33,8 +33,8 @@ public abstract class AppTestBase {
     IpAddressDto dto = new IpAddressDto();
 
     switch (databaseType) {
-      case "asn" -> dto.setIpAddress(IP_ADDRESS_ASN);
-      case "location" -> dto.setIpAddress(IP_ADDRESS_LOCATION);
+      case "asn" -> dto.setIpAddress(ASN_IP_ADDRESS);
+      case "location" -> dto.setIpAddress(LOCATION_IP_ADDRESS);
       default -> throw new IllegalStateException("Unexpected value: " + databaseType);
     }
 
