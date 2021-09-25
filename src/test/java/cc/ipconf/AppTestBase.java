@@ -5,6 +5,7 @@ import cc.ipconf.controllers.InfoController;
 import cc.ipconf.controllers.IpController;
 import cc.ipconf.controllers.LocationController;
 import cc.ipconf.dto.IpAddressDto;
+import cc.ipconf.enums.GeolocationDatabaseType;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,12 +30,12 @@ public abstract class AppTestBase {
   @Autowired
   protected LocationController locationController;
 
-  protected IpAddressDto getTestIpAddressDto(@NotNull String databaseType) {
+  protected IpAddressDto getTestIpAddressDto(@NotNull GeolocationDatabaseType databaseType) {
     IpAddressDto dto = new IpAddressDto();
 
     switch (databaseType) {
-      case "asn" -> dto.setIpAddress(ASN_IP_ADDRESS);
-      case "location" -> dto.setIpAddress(LOCATION_IP_ADDRESS);
+      case ASN -> dto.setIpAddress(ASN_IP_ADDRESS);
+      case LOCATION -> dto.setIpAddress(LOCATION_IP_ADDRESS);
       default -> throw new IllegalStateException("Unexpected value: " + databaseType);
     }
 
