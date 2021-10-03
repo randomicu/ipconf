@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(InfoController.class)
 @AutoConfigureMockMvc
-public class InfoControllerTest {
+class InfoControllerTest {
 
   private static final String IP_ADDRESS = "2.2.2.2";
   private static final String CITY = "Mocked City";
@@ -57,7 +57,7 @@ public class InfoControllerTest {
   }
 
   @Test
-  public void testInfoAsJson() throws Exception {
+  void testInfoAsJson() throws Exception {
     mockMvc.perform(get(INFO_ENDPOINT)
             .accept(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk())
