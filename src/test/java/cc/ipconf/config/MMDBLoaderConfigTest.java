@@ -1,13 +1,12 @@
-package cc.ipconf;
+package cc.ipconf.config;
 
-import cc.ipconf.config.MMDBLoaderConfig;
 import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
-public class FilenameGeneratorTest {
+class MMDBLoaderConfigTest {
 
   MMDBLoaderConfig mmdbLoaderConfig;
   String databasePath;
