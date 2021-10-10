@@ -1,6 +1,6 @@
 package cc.ipconf.enums;
 
-public enum GeolocationDatabaseType {
+public enum GeoDatabaseType {
   ASN,
   LOCATION
 }

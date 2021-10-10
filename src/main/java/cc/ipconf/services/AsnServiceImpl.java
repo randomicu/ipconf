@@ -1,6 +1,6 @@
 package cc.ipconf.services;
 
-import cc.ipconf.config.MMDBLoaderConfig;
+import cc.ipconf.config.GeoDatabaseLoaderConfig;
 import cc.ipconf.dto.AsnDto;
 import cc.ipconf.dto.NetworkDto;
 import com.maxmind.geoip2.DatabaseReader;
@@ -17,9 +17,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class AsnServiceImpl implements AsnService {
 
-  private final MMDBLoaderConfig mmdbLoader;
+  private final GeoDatabaseLoaderConfig mmdbLoader;
 
-  public AsnServiceImpl(MMDBLoaderConfig mmdbLoader) {
+  public AsnServiceImpl(GeoDatabaseLoaderConfig mmdbLoader) {
     this.mmdbLoader = mmdbLoader;
   }
 

@@ -4,7 +4,7 @@ import static cc.ipconf.AppPaths.LOCATION_CITY_ENDPOINT;
 import static cc.ipconf.AppPaths.LOCATION_COUNTRY_ENDPOINT;
 import cc.ipconf.AppTestBase;
 import cc.ipconf.dto.IpAddressDto;
-import cc.ipconf.enums.GeolocationDatabaseType;
+import cc.ipconf.enums.GeoDatabaseType;
 import cc.ipconf.services.RequestService;
 import javax.servlet.http.HttpServletRequest;
 import org.hamcrest.Matchers;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class LocationControllerTest extends AppTestBase {
 
-  private final IpAddressDto ipAddressDto = getTestIpAddressDto(GeolocationDatabaseType.LOCATION);
+  private final IpAddressDto ipAddressDto = getTestIpAddressDto(GeoDatabaseType.LOCATION);
   private final String EXPECTED_CITY = "London";
   private final String EXPECTED_COUNTRY = "United Kingdom";
 

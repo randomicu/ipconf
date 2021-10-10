@@ -1,6 +1,6 @@
 package cc.ipconf.services;
 
-import cc.ipconf.config.MMDBLoaderConfig;
+import cc.ipconf.config.GeoDatabaseLoaderConfig;
 import cc.ipconf.dto.CityDto;
 import cc.ipconf.dto.CountryDto;
 import com.maxmind.geoip2.DatabaseReader;
@@ -19,10 +19,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class LocationServiceImpl implements LocationService {
 
-  private final MMDBLoaderConfig mmdbLoader;
+  private final GeoDatabaseLoaderConfig mmdbLoader;
 
   @Autowired
-  public LocationServiceImpl(MMDBLoaderConfig mmdbLoader) {
+  public LocationServiceImpl(GeoDatabaseLoaderConfig mmdbLoader) {
     this.mmdbLoader = mmdbLoader;
   }
 

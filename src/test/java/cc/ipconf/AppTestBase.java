@@ -5,7 +5,7 @@ import cc.ipconf.controllers.InfoController;
 import cc.ipconf.controllers.IpController;
 import cc.ipconf.controllers.LocationController;
 import cc.ipconf.dto.IpAddressDto;
-import cc.ipconf.enums.GeolocationDatabaseType;
+import cc.ipconf.enums.GeoDatabaseType;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,7 +30,7 @@ public abstract class AppTestBase {
   @Autowired
   protected LocationController locationController;
 
-  protected IpAddressDto getTestIpAddressDto(@NotNull GeolocationDatabaseType databaseType) {
+  protected IpAddressDto getTestIpAddressDto(@NotNull GeoDatabaseType databaseType) {
     IpAddressDto dto = new IpAddressDto();
 
     switch (databaseType) {

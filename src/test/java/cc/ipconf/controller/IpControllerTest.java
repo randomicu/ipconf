@@ -4,7 +4,7 @@ import static cc.ipconf.AppPaths.IP_ENDPOINT;
 import cc.ipconf.AppTestBase;
 import cc.ipconf.dto.IpAddressDto;
 import cc.ipconf.services.RequestService;
-import cc.ipconf.enums.GeolocationDatabaseType;
+import cc.ipconf.enums.GeoDatabaseType;
 import javax.servlet.http.HttpServletRequest;
 import static org.hamcrest.Matchers.is;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class IpControllerTest extends AppTestBase {
 
-  private final IpAddressDto ipAddressDto = getTestIpAddressDto(GeolocationDatabaseType.ASN);
+  private final IpAddressDto ipAddressDto = getTestIpAddressDto(GeoDatabaseType.ASN);
 
   @Autowired
   private MockMvc mockMvc;
