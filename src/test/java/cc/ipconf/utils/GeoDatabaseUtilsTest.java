@@ -15,7 +15,7 @@ class GeoDatabaseUtilsTest {
     var month = date.getMonthValue();
     var year = date.getYear();
 
-    databasePath = GeoDatabaseUtils.generateDatabasePath(databasePathPattern,"mmdb/");
+    databasePath = GeoDatabaseUtils.generateDatabasePath(databasePathPattern, "mmdb/");
 
     assertEquals("mmdb/city-%s-%s.mmdb".formatted(year, month), databasePath);
   }
