@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
 
 @Slf4j
 @Configuration
-public class MMDBLoaderConfig {
+public class GeoDatabaseLoaderConfig {
 
   @Value("${ipconf.mmdb.city-database.filename-pattern}")
   private String cityDatabaseNamePattern;

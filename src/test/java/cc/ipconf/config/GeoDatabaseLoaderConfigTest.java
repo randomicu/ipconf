@@ -6,14 +6,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
-class MMDBLoaderConfigTest {
+class GeoDatabaseLoaderConfigTest {
 
-  MMDBLoaderConfig mmdbLoaderConfig;
+  GeoDatabaseLoaderConfig mmdbLoaderConfig;
   String databasePath;
 
   @BeforeEach
   void setUp() {
-    mmdbLoaderConfig = new MMDBLoaderConfig();
+    mmdbLoaderConfig = new GeoDatabaseLoaderConfig();
     ReflectionTestUtils.setField(mmdbLoaderConfig, "databasesDirectoryPath", "mmdb/");
   }
 
