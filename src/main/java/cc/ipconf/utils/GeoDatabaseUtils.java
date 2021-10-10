@@ -7,6 +7,10 @@ import org.springframework.util.StringUtils;
 @Slf4j
 public class GeoDatabaseUtils {
 
+  private GeoDatabaseUtils() {
+    throw new IllegalStateException("Utility class");
+  }
+
   public static String generateDatabasePath(String databasePathPattern, String directoryPath) {
     LocalDate currentDate = LocalDate.now();
     int currentMonth = currentDate.getMonthValue();
