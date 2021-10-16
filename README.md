@@ -16,7 +16,7 @@ Before building, edit the `.env` file.
 2. Tag docker image with `latest` tag: `docker tag image:1.0.0 image:latest` 
 3. Push it twice: `docker push image:1.0.0 && docker push image:latest`
 4. Download latest db-ip databases (ASN Lite, City Lite) and place it to `./mmdb` folder
-5. Start container: `docker run --rm -p 8080:8080 --volume "${PWD}/mmdb:/workspace/mmdb" --env "SENTRY_DSN=$SENTRY_DSN" image:1.0.0`
+5. Start container: `docker run --rm -p 8080:8080 --volume "${PWD}/mmdb:/workspace/mmdb" --env-file ".env" image:1.0.0`
 
 ## Development and releases
 
