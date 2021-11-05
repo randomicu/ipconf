@@ -11,12 +11,12 @@ import org.springframework.util.StringUtils;
 @Configuration
 public class AppConfig {
 
-  @Value("${ipconf-web-env:default}")
+  @Value("${ipconf-web-env:not_set}")
   private String env;
 
   @PostConstruct
   public void printAppEnvironment() {
-    if (StringUtils.hasLength(env) && !env.equals("default")) {
+    if (StringUtils.hasLength(env) && !env.equals("not_set")) {
       log.info("IPCONF_WEB_ENV VARIABLE: {}", env);
     } else {
       log.info("IPCONF_WEB_ENV VARIABLE IS NOT SET");
