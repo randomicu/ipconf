@@ -24,10 +24,14 @@ public class GeoDatabaseLoaderConfig {
   @Value("${ipconf.mmdb.asn-database.filename-pattern}")
   private String asnDatabaseNamePattern;
 
+  private String cityDatabaseName;
+  private String asnDatabaseName;
+
   @Bean
   public DatabaseReader getCityDatabaseReader() {
     String cityDatabasePath = generateDatabasePath(cityDatabaseNamePattern, databasesDirectory);
     File database = new File(Paths.get(cityDatabasePath).toString());
+    cityDatabaseName = database.getName();
     DatabaseReader.Builder databaseReaderBuilder = new DatabaseReader.Builder(database);
 
     try {
@@ -43,6 +47,7 @@ public class GeoDatabaseLoaderConfig {
   public DatabaseReader getAsnDatabaseReader() {
     String asnDatabasePath = generateDatabasePath(asnDatabaseNamePattern, databasesDirectory);
     File database = new File(Paths.get(asnDatabasePath).toString());
+    asnDatabaseName = database.getName();
     DatabaseReader.Builder databaseReaderBuilder = new DatabaseReader.Builder(database);
 
     try {
@@ -52,6 +57,14 @@ public class GeoDatabaseLoaderConfig {
       Sentry.captureException(e);
       throw new IllegalArgumentException("ASN database file not found");
     }
+  }
+
+  public String getCityDatabaseName() {
+    return cityDatabaseName;
+  }
+
+  public String getAsnDatabaseName() {
+    return asnDatabaseName;
   }
 
 }
