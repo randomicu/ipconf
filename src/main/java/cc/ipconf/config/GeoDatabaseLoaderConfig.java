@@ -6,6 +6,7 @@ import io.sentry.Sentry;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +25,10 @@ public class GeoDatabaseLoaderConfig {
   @Value("${ipconf.mmdb.asn-database.filename-pattern}")
   private String asnDatabaseNamePattern;
 
+  @Getter
   private String cityDatabaseName;
+
+  @Getter
   private String asnDatabaseName;
 
   @Bean
@@ -57,14 +61,6 @@ public class GeoDatabaseLoaderConfig {
       Sentry.captureException(e);
       throw new IllegalArgumentException("ASN database file not found");
     }
-  }
-
-  public String getCityDatabaseName() {
-    return cityDatabaseName;
-  }
-
-  public String getAsnDatabaseName() {
-    return asnDatabaseName;
   }
 
 }
