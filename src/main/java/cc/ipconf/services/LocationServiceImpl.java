@@ -7,13 +7,14 @@ import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
 import com.maxmind.geoip2.model.CountryResponse;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 @Slf4j
 @Service
@@ -47,7 +48,7 @@ public class LocationServiceImpl implements LocationService {
     DatabaseReader reader = mmdbLoader.getCityDatabaseReader();
 
     InetAddress ip = this.getIpAddress(clientIpAddress);
-    CityResponse response = this.getCityResponse(reader,ip);
+    CityResponse response = this.getCityResponse(reader, ip);
 
     cityDto.setCity(response.getCity().getName());
 

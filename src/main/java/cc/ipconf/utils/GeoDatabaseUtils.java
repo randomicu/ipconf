@@ -1,8 +1,9 @@
 package cc.ipconf.utils;
 
-import java.time.LocalDate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
+
+import java.time.LocalDate;
 
 @Slf4j
 public class GeoDatabaseUtils {

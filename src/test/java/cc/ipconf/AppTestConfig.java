@@ -1,13 +1,14 @@
 package cc.ipconf;
 
 import com.maxmind.geoip2.DatabaseReader;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 @Slf4j
 @TestConfiguration

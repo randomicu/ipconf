@@ -1,21 +1,23 @@
 package cc.ipconf.controller;
 
-import static cc.ipconf.AppPaths.ASN_ENDPOINT;
 import cc.ipconf.AppTestBase;
 import cc.ipconf.dto.IpAddressDto;
-import cc.ipconf.services.RequestService;
 import cc.ipconf.enums.GeoDatabaseType;
-import javax.servlet.http.HttpServletRequest;
-import static org.hamcrest.Matchers.is;
+import cc.ipconf.services.RequestService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+
+import javax.servlet.http.HttpServletRequest;
+
+import static cc.ipconf.AppPaths.ASN_ENDPOINT;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;

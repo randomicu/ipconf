@@ -1,6 +1,5 @@
 package cc.ipconf.controller;
 
-import static cc.ipconf.AppPaths.INFO_ENDPOINT;
 import cc.ipconf.controllers.InfoController;
 import cc.ipconf.dto.AsnDto;
 import cc.ipconf.dto.CityDto;
@@ -10,21 +9,24 @@ import cc.ipconf.dto.IpAddressDto;
 import cc.ipconf.dto.NetworkDto;
 import cc.ipconf.services.InfoService;
 import com.maxmind.db.Network;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import javax.servlet.http.HttpServletRequest;
 import org.hamcrest.Matchers;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+
+import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import static cc.ipconf.AppPaths.INFO_ENDPOINT;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
