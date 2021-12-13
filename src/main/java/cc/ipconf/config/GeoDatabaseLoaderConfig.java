@@ -1,17 +1,21 @@
 package cc.ipconf.config;
 
-import static cc.ipconf.utils.GeoDatabaseUtils.generateDatabasePath;
 import com.maxmind.geoip2.DatabaseReader;
-import io.sentry.Sentry;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.PostConstruct;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
+import static cc.ipconf.utils.GeoDatabaseUtils.generateDatabasePath;
 
 @Slf4j
 @Configuration
@@ -32,35 +36,86 @@ public class GeoDatabaseLoaderConfig {
   @Getter
   private String asnDatabaseName;
 
+  @Value("${ipconf.mmdb.databases.directory}/${ipconf.mmdb.city-database-fallback-filename}")
+  private String cityDatabaseDefaultPath;
+
+  @Value("${ipconf.mmdb.databases.directory}/${ipconf.mmdb.asn-database-fallback-filename}")
+  private String asnDatabaseDefaultPath;
+
+  private final ConcurrentMap<String, DatabaseReader> GEO_DATABASES = new ConcurrentHashMap<>();
+
+  @PostConstruct
+  public void initGeoDatabases() throws IOException {
+    log.info("Starting geolocation databases initialization");
+
+    String cityDatabasePath = generateDatabasePath(cityDatabaseNamePattern, databasesDirectory);
+    String asnDatabasePath = generateDatabasePath(asnDatabaseNamePattern, databasesDirectory);
+
+    DatabaseReader cityDatabaseReader = getDatabaseReader(cityDatabasePath);
+    DatabaseReader asnDatabaseReader = getDatabaseReader(asnDatabasePath);
+
+    GEO_DATABASES.put("cityDatabaseReader", cityDatabaseReader);
+    GEO_DATABASES.put("asnDatabaseReader", asnDatabaseReader);
+    log.info("Finishing geolocation databases initialization");
+
+  }
+
   @Bean
   public DatabaseReader getCityDatabaseReader() {
-    String cityDatabasePath = generateDatabasePath(cityDatabaseNamePattern, databasesDirectory);
-    File databaseFile = new File(Paths.get(cityDatabasePath).toString());
-    cityDatabaseName = databaseFile.getName();
-
-    return getDatabaseReader(databaseFile);
+    return GEO_DATABASES.get("cityDatabaseReader");
   }
 
   @Bean
   public DatabaseReader getAsnDatabaseReader() {
-    String asnDatabasePath = generateDatabasePath(asnDatabaseNamePattern, databasesDirectory);
-    File databaseFile = new File(Paths.get(asnDatabasePath).toString());
-    asnDatabaseName = databaseFile.getName();
-
-    return getDatabaseReader(databaseFile);
+    return GEO_DATABASES.get("asnDatabaseReader");
   }
 
   @NotNull
-  private DatabaseReader getDatabaseReader(File database) {
-    DatabaseReader.Builder databaseReaderBuilder = new DatabaseReader.Builder(database);
+  private DatabaseReader getDatabaseReader(String rawPath) throws IOException {
+    File databaseFile = validateDatabasePath(rawPath);
+    DatabaseReader.Builder databaseReaderBuilder = new DatabaseReader.Builder(databaseFile);
 
-    try {
-      log.info("Loading database: {}", database.getAbsolutePath());
-      return databaseReaderBuilder.build();
-    } catch (IOException e) {
-      Sentry.captureException(e);
-      throw new IllegalArgumentException("Geo database file not found");
+    log.info("Trying to load database: {}", databaseFile.getAbsolutePath());
+    DatabaseReader reader = databaseReaderBuilder.build();
+    log.info("Database loaded successfully");
+
+    return reader;
+  }
+
+  @NotNull
+  private File validateDatabasePath(String databasePath) {
+    log.info("Validating database path: {}", databasePath);
+
+    File databaseFile = new File(Paths.get(databasePath).toString());
+
+    if (!databaseFile.exists()) {
+      log.info("Database file {} was not found", databaseFile);
+      if (databaseFile.getName().startsWith("city")) {
+        log.info("Loading default city database from: {}", cityDatabaseDefaultPath);
+
+        File cityDatabaseFile = new File(Paths.get(cityDatabaseDefaultPath).toString());
+        cityDatabaseName = cityDatabaseFile.getName();
+
+        databaseFile = cityDatabaseFile;
+
+      } else if (databaseFile.getName().startsWith("asn")) {
+        log.info("Loading default asn database from: {}", asnDatabaseDefaultPath);
+
+        File asnDatabaseFile = new File(Paths.get(asnDatabaseDefaultPath).toString());
+        asnDatabaseName = asnDatabaseFile.getName();
+
+        databaseFile = asnDatabaseFile;
+      }
     }
+
+    if (databaseFile.getName().startsWith("city")) {
+      cityDatabaseName = databaseFile.getName();
+
+    } else if (databaseFile.getName().startsWith("asn")) {
+      asnDatabaseName = databaseFile.getName();
+    }
+
+    return databaseFile;
   }
 
 }
