@@ -50,30 +50,33 @@ public class GeoDatabaseLoaderConfig {
   @PostConstruct
   public void initGeoDatabases() throws IOException {
 
-    // workaround for PostConstruct in tests
-    if (isProduction) {
-      log.info("Starting geolocation databases initialization");
-
-      String cityDatabasePath = generateDatabasePath(cityDatabaseNamePattern, databasesDirectory);
-      String asnDatabasePath = generateDatabasePath(asnDatabaseNamePattern, databasesDirectory);
-
-      DatabaseReader cityDatabaseReader = getDatabaseReader(cityDatabasePath);
-      DatabaseReader asnDatabaseReader = getDatabaseReader(asnDatabasePath);
-
-      GEO_DATABASES.put("cityDatabaseReader", cityDatabaseReader);
-      GEO_DATABASES.put("asnDatabaseReader", asnDatabaseReader);
-      log.info("Finishing geolocation databases initialization");
+    if (!isProduction) {
+      log.info("Running in test mode, skipping geolocation databases initialization");
+      return;
     }
+
+    log.info("Starting geolocation databases initialization");
+
+    String cityDatabasePath = generateDatabasePath(cityDatabaseNamePattern, databasesDirectory);
+    String asnDatabasePath = generateDatabasePath(asnDatabaseNamePattern, databasesDirectory);
+
+    DatabaseReader cityDatabaseReader = getDatabaseReader(cityDatabasePath);
+    DatabaseReader asnDatabaseReader = getDatabaseReader(asnDatabasePath);
+
+    geoDatabases.put("cityDatabaseReader", cityDatabaseReader);
+    geoDatabases.put("asnDatabaseReader", asnDatabaseReader);
+
+    log.info("Finishing geolocation databases initialization");
   }
 
   @Bean
   public DatabaseReader getCityDatabaseReader() {
-    return GEO_DATABASES.get("cityDatabaseReader");
+    return geoDatabases.get("cityDatabaseReader");
   }
 
   @Bean
   public DatabaseReader getAsnDatabaseReader() {
-    return GEO_DATABASES.get("asnDatabaseReader");
+    return geoDatabases.get("asnDatabaseReader");
   }
 
   @NotNull
