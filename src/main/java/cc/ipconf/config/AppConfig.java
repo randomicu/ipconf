@@ -17,7 +17,7 @@ public class AppConfig {
   @PostConstruct
   public void printAppEnvironment() {
     if (StringUtils.hasLength(env) && !env.equals("not_set")) {
-      log.info("IPCONF_WEB_ENV VARIABLE: {}", env);
+      log.info("IPCONF_WEB_ENV variable: {}", env);
     } else {
       log.info("IPCONF_WEB_ENV VARIABLE IS NOT SET");
     }
