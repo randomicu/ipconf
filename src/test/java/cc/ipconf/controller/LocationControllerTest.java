@@ -1,26 +1,26 @@
 package cc.ipconf.controller;
 
-import static cc.ipconf.AppPaths.LOCATION_CITY_ENDPOINT;
-import static cc.ipconf.AppPaths.LOCATION_COUNTRY_ENDPOINT;
 import cc.ipconf.AppTestBase;
 import cc.ipconf.dto.IpAddressDto;
 import cc.ipconf.enums.GeoDatabaseType;
 import cc.ipconf.services.RequestService;
-import javax.servlet.http.HttpServletRequest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+
+import javax.servlet.http.HttpServletRequest;
+
+import static cc.ipconf.AppPaths.LOCATION_CITY_ENDPOINT;
+import static cc.ipconf.AppPaths.LOCATION_COUNTRY_ENDPOINT;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
 public class LocationControllerTest extends AppTestBase {

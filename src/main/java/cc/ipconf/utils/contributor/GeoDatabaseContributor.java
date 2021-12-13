@@ -1,11 +1,12 @@
 package cc.ipconf.utils.contributor;
 
 import cc.ipconf.config.GeoDatabaseLoaderConfig;
-import java.util.HashMap;
-import java.util.Map;
 import org.springframework.boot.actuate.info.Info;
 import org.springframework.boot.actuate.info.InfoContributor;
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class GeoDatabaseContributor implements InfoContributor {

@@ -1,11 +1,12 @@
 package cc.ipconf.config;
 
-import java.nio.file.Path;
-import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
+
+import javax.annotation.PostConstruct;
+import java.nio.file.Path;
 
 @Slf4j
 @Configuration
