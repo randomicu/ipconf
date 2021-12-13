@@ -36,28 +36,34 @@ public class GeoDatabaseLoaderConfig {
   @Getter
   private String asnDatabaseName;
 
-  @Value("${ipconf.mmdb.databases.directory}/${ipconf.mmdb.city-database-fallback-filename}")
+  @Value("${ipconf.mmdb.databases.directory}${ipconf.mmdb.city-database-fallback-filename}")
   private String cityDatabaseDefaultPath;
 
-  @Value("${ipconf.mmdb.databases.directory}/${ipconf.mmdb.asn-database-fallback-filename}")
+  @Value("${ipconf.mmdb.databases.directory}${ipconf.mmdb.asn-database-fallback-filename}")
   private String asnDatabaseDefaultPath;
+
+  @Value("${ipconf.mmdb.databases.production.initialization}")
+  private boolean isProduction;
 
   private final ConcurrentMap<String, DatabaseReader> GEO_DATABASES = new ConcurrentHashMap<>();
 
   @PostConstruct
   public void initGeoDatabases() throws IOException {
-    log.info("Starting geolocation databases initialization");
 
-    String cityDatabasePath = generateDatabasePath(cityDatabaseNamePattern, databasesDirectory);
-    String asnDatabasePath = generateDatabasePath(asnDatabaseNamePattern, databasesDirectory);
+    // workaround for PostConstruct in tests
+    if (isProduction) {
+      log.info("Starting geolocation databases initialization");
 
-    DatabaseReader cityDatabaseReader = getDatabaseReader(cityDatabasePath);
-    DatabaseReader asnDatabaseReader = getDatabaseReader(asnDatabasePath);
+      String cityDatabasePath = generateDatabasePath(cityDatabaseNamePattern, databasesDirectory);
+      String asnDatabasePath = generateDatabasePath(asnDatabaseNamePattern, databasesDirectory);
 
-    GEO_DATABASES.put("cityDatabaseReader", cityDatabaseReader);
-    GEO_DATABASES.put("asnDatabaseReader", asnDatabaseReader);
-    log.info("Finishing geolocation databases initialization");
+      DatabaseReader cityDatabaseReader = getDatabaseReader(cityDatabasePath);
+      DatabaseReader asnDatabaseReader = getDatabaseReader(asnDatabasePath);
 
+      GEO_DATABASES.put("cityDatabaseReader", cityDatabaseReader);
+      GEO_DATABASES.put("asnDatabaseReader", asnDatabaseReader);
+      log.info("Finishing geolocation databases initialization");
+    }
   }
 
   @Bean
@@ -89,7 +95,7 @@ public class GeoDatabaseLoaderConfig {
     File databaseFile = new File(Paths.get(databasePath).toString());
 
     if (!databaseFile.exists()) {
-      log.info("Database file {} was not found", databaseFile);
+      log.error("Database file {} was not found", databaseFile);
       if (databaseFile.getName().startsWith("city")) {
         log.info("Loading default city database from: {}", cityDatabaseDefaultPath);
 
