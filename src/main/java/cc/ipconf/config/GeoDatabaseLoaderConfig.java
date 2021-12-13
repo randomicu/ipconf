@@ -45,7 +45,7 @@ public class GeoDatabaseLoaderConfig {
   @Value("${ipconf.mmdb.databases.production.initialization}")
   private boolean isProduction;
 
-  private final ConcurrentMap<String, DatabaseReader> GEO_DATABASES = new ConcurrentHashMap<>();
+  private final ConcurrentMap<String, DatabaseReader> geoDatabases = new ConcurrentHashMap<>();
 
   @PostConstruct
   public void initGeoDatabases() throws IOException {
