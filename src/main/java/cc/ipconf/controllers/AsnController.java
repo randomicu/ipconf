@@ -53,7 +53,7 @@ public class AsnController {
     AsnDto asnDto = asnService.getAsn(ipAddress.getIpAddress());
     log.info("Client ASN (AsnDto) from asnService: {}", asnDto);
 
-    int asNumber = asnDto.getAutonomousSystemNumber();
+    long asNumber = asnDto.getAutonomousSystemNumber();
     String asnOrganization = asnDto.getAutonomousSystemOrganization();
     String asnNetworkAddress = asnDto.getNetworkDto().getNetworkAddress().getHostAddress();
     int asnPrefixLength = asnDto.getNetworkDto().getPrefixLength();

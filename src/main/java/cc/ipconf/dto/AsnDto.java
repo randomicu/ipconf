@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class AsnDto {
 
   @JsonProperty("asn")
-  Integer autonomousSystemNumber;
+  Long autonomousSystemNumber;
 
   @JsonProperty("organization")
   String autonomousSystemOrganization;

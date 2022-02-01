@@ -40,7 +40,7 @@ class InfoControllerTest {
   private static final String COUNTRY = "Mocked Country";
   private static final String ISO_CODE = "MC";
   private static final boolean IS_EU = true;
-  private static final int ASN = 10203;
+  private static final Long ASN = 10203L;
   private static final String ASN_ORG = "Mocked ASN Organization";
   private static final String NETWORK_ADDRESS = "2.2.0.0";
   private static final int PREFIX_LENGTH = 18;
@@ -68,7 +68,7 @@ class InfoControllerTest {
         .andExpect(jsonPath("country.country", Matchers.is(COUNTRY)))
         .andExpect(jsonPath("country.iso_code", Matchers.is(ISO_CODE)))
         .andExpect(jsonPath("country.is_eu", Matchers.is(IS_EU)))
-        .andExpect(jsonPath("asn.asn", Matchers.is(ASN)))
+        .andExpect(jsonPath("asn.asn", Matchers.is(ASN.intValue())))
         .andExpect(jsonPath("asn.organization", Matchers.is(ASN_ORG)))
         .andExpect(jsonPath("asn.network.network_address", Matchers.is(NETWORK_ADDRESS)))
         .andExpect(jsonPath("asn.network.prefix_length", Matchers.is(PREFIX_LENGTH)))
