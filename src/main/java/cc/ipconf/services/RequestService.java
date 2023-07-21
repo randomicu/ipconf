@@ -2,7 +2,7 @@ package cc.ipconf.services;
 
 import cc.ipconf.dto.IpAddressDto;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 public interface RequestService {
 
