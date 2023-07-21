@@ -14,7 +14,7 @@
 	<name>ipconf-app</name>
 	<description>Shows location info from your IP address</description>
 	<properties>
-		<java.version>20.0.1</java.version>
+		<java.version>20</java.version>
 		<sonar.organization>randomicu</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
